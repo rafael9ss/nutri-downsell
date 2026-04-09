@@ -1,5 +1,31 @@
+import { useEffect } from "react";
 
 export default function App() {
+  useEffect(() => {
+    const initUpsell = () => {
+      // @ts-ignore
+      if (window.initWiapyUpsell) {
+        // @ts-ignore
+        window.initWiapyUpsell({
+          linkUrl: "https://pay.wiapy.com/checkout/69d810e093fbb1e7e714ad4d",
+          linkText: "SIM, EU ACEITO ESSA OFERTA",
+          styles: {
+            backgroundColor: "#00d769",
+            hoverBackgroundColor: "#00b85a",
+            fontSize: "17px",
+            borderRadius: "10px"
+          },
+          refusalLinkUrl: "https://wiapy.com/login",
+          refusalLinkText: "Recusar está oferta",
+          refusalLinkColor: "#000000"
+        });
+      } else {
+        setTimeout(initUpsell, 100);
+      }
+    };
+    initUpsell();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans overflow-hidden relative selection:bg-[#ccff00] selection:text-black pb-32">
       <style dangerouslySetInnerHTML={{ __html: `
@@ -169,13 +195,8 @@ export default function App() {
               </li>
             </ul>
 
-            <div className="mt-auto space-y-4">
-              <button onClick={() => alert('Checkout')} className="w-full bg-[#ccff00] text-black border-4 border-black py-4 px-6 font-space font-bold text-xl uppercase tracking-tighter bouncy-hover animate-wobble" style={{boxShadow: '4px 4px 0px #0a0a0a'}}>
-                quero aproveitar por R$ 29,90
-              </button>
-              <button onClick={() => alert('No thanks')} className="w-full bg-transparent text-gray-500 border-2 border-dashed border-gray-400 py-3 px-6 font-dm font-medium text-sm hover:text-black hover:border-black transition-colors rounded-none">
-                não, quero sair sem o assistente
-              </button>
+            <div className="mt-auto space-y-4 min-h-[120px]">
+              <div id="wiapy_upsell"></div>
             </div>
           </div>
 
