@@ -176,7 +176,7 @@ export default function App() {
             <div className="flex flex-col mb-8 mt-4">
               <span className="line-through text-gray-400 font-space text-2xl">de R$ 49,90</span>
               <div className="font-space font-black text-6xl text-black leading-none mt-1">
-                <span className="text-3xl relative top-[-1.5rem]">r$</span>29,90
+                <span className="text-3xl relative top-[-1.5rem]">r$</span>17,90
               </div>
             </div>
 
