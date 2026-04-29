@@ -5,20 +5,23 @@ export default function App() {
     const initUpsell = () => {
       // @ts-ignore
       if (window.initWiapyUpsell) {
-        // @ts-ignore
-        window.initWiapyUpsell({
-          linkUrl: "https://pay.wiapy.com/checkout/69d810e093fbb1e7e714ad4d",
-          linkText: "SIM, EU ACEITO ESSA OFERTA",
-          styles: {
-            backgroundColor: "#00d769",
-            hoverBackgroundColor: "#00b85a",
-            fontSize: "17px",
-            borderRadius: "10px"
-          },
-          refusalLinkUrl: "https://wiapy.com/login",
-          refusalLinkText: "Recusar está oferta",
-          refusalLinkColor: "#000000"
-        });
+        const container = document.getElementById("wiapy_upsell");
+        if (container && container.innerHTML === "") {
+          // @ts-ignore
+          window.initWiapyUpsell({
+            linkUrl: "https://pay.wiapy.com/checkout/69d810e093fbb1e7e714ad4d",
+            linkText: "SIM, EU ACEITO ESSA OFERTA",
+            styles: {
+              backgroundColor: "#00d769",
+              hoverBackgroundColor: "#00b85a",
+              fontSize: "17px",
+              borderRadius: "10px"
+            },
+            refusalLinkUrl: "https://wiapy.com/login",
+            refusalLinkText: "Recusar está oferta",
+            refusalLinkColor: "#000000"
+          });
+        }
       } else {
         setTimeout(initUpsell, 100);
       }
@@ -99,41 +102,10 @@ export default function App() {
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#7000ff] opacity-40 blur-[100px] -z-10 pointer-events-none"></div>
       <div className="absolute bottom-[20%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#ff0099] opacity-30 blur-[120px] -z-10 pointer-events-none"></div>
 
-      {/* Sticky Nav Pill */}
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl bg-white/95 backdrop-blur-sm text-black border-2 border-black rounded-full px-2 py-2 flex items-center justify-between" style={{boxShadow: '6px 6px 0px #0a0a0a'}}>
-        <div className="flex items-center gap-4 px-4">
-          <div className="w-8 h-8 bg-[#ccff00] rounded-full flex items-center justify-center font-space font-bold border-2 border-black">
-            N
-          </div>
-          <span className="font-space font-bold text-sm tracking-tighter lowercase hidden sm:block">nutri — downsell</span>
-        </div>
-        <button className="bg-black text-white px-6 py-2 rounded-full font-space font-bold text-sm uppercase bouncy-hover border-2 border-transparent hover:bg-[#ff0099] hover:border-black hover:text-black transition-colors">
-          garantir agora
-        </button>
-      </div>
-
-      <main className="pt-32 px-4 sm:px-8 max-w-7xl mx-auto font-dm">
+      <main className="pt-16 px-4 sm:px-8 max-w-7xl mx-auto font-dm">
         
-        {/* Anti-Safe Harbor Header */}
-        <div className="relative mb-24">
-          <div className="absolute -top-10 -left-10 text-6xl animate-float-1 z-10 hidden md:block">
-            <div className="bg-white p-2 border-2 border-black" style={{boxShadow: '4px 4px 0px rgba(0,0,0,1)', transform: 'rotate(-10deg)'}}>
-              🫣
-            </div>
-          </div>
-
-          <div className="bg-[#ccff00] border-4 border-black p-6 md:p-12 transform -rotate-1 relative overflow-hidden" style={{boxShadow: '8px 8px 0px #0a0a0a'}}>
-            <h1 className="font-space text-black text-5xl sm:text-6xl md:text-8xl font-black leading-[0.9] lowercase mb-6 relative z-10 w-full md:w-[85%]">
-              tudo bem, sabemos que <span className="bg-gradient-to-r from-[#7000ff] to-[#ff0099] text-transparent bg-clip-text">nem sempre</span> é o momento certo.
-            </h1>
-            <p className="font-dm text-black font-medium text-xl md:text-2xl max-w-2xl relative z-10 mt-8 mb-4 bg-white inline-block p-2 border-2 border-black transform rotate-1">
-              mas antes de ir, deixa a gente te fazer uma proposta diferente.
-            </p>
-          </div>
-        </div>
-
         {/* Slanted Marquee */}
-        <div className="bg-white border-y-4 border-black py-4 my-16 transform rotate-2 w-[110%] -ml-[5%] overflow-hidden relative z-20 flex">
+        <div className="bg-white border-y-4 border-black py-4 mb-16 transform -rotate-2 w-[110%] -ml-[5%] overflow-hidden relative z-20 flex">
           <div className="flex animate-marquee shrink-0">
             {[...Array(4)].map((_, i) => (
               <div key={`m1-${i}`} className="flex items-center gap-8 px-4 font-space font-black text-2xl text-black uppercase whitespace-nowrap shrink-0">
@@ -156,63 +128,84 @@ export default function App() {
           </div>
         </div>
 
-        {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 my-20">
+        {/* Anti-Safe Harbor Header & Pricing Integrated */}
+        <div className="relative mb-16 flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-8">
           
-          {/* Main Value Prop */}
-          <div className="md:col-span-7 bg-[#7000ff] brutal-border p-8 md:p-10 transform rotate-1 flex flex-col justify-center relative brutal-shadow">
-            <h2 className="font-space font-bold text-4xl sm:text-5xl leading-none mb-6 lowercase">
-              a nutri foi desenvolvida para tornar o seu dia a dia mais <span className="bg-[#ccff00] text-black px-2 inline-block -rotate-2">leve</span>
-            </h2>
-            <p className="text-xl md:text-2xl font-dm">
-              por isso, não queremos que o valor seja o que vai ficar entre você e isso.
-            </p>
-          </div>
-
-          {/* Pricing Card */}
-          <div className="md:col-span-5 bg-white text-black brutal-border p-8 md:p-10 transform -rotate-2 flex flex-col relative" style={{boxShadow: '8px 8px 0px #ff0099'}}>
-            <div className="font-space font-bold text-lg mb-2 uppercase tracking-tight text-[#7000ff]">Nutri — assistente de lanches com IA</div>
-            
-            <div className="flex flex-col mb-8 mt-4">
-              <span className="line-through text-gray-400 font-space text-2xl">de R$ 49,90</span>
-              <div className="font-space font-black text-6xl text-black leading-none mt-1">
-                <span className="text-3xl relative top-[-1.5rem]">r$</span>17,90
+          {/* Typographic Hero */}
+          <div className="flex-1 relative z-10 w-full">
+            <div className="absolute -top-10 -left-10 text-6xl animate-float-1 z-10 hidden md:block">
+              <div className="bg-white p-2 border-2 border-black" style={{boxShadow: '4px 4px 0px rgba(0,0,0,1)', transform: 'rotate(-10deg)'}}>
+                🫣
               </div>
             </div>
 
-            <ul className="space-y-4 mb-10 font-bold">
-              <li className="flex items-start gap-3">
-                <span className="text-[#ff0099] text-xl mt-1">✓</span>
-                <span>lanches com o que tem na geladeira</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#ff0099] text-xl mt-1">✓</span>
-                <span>cardápio semanal sob demanda</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#ff0099] text-xl mt-1">✓</span>
-                <span>adaptação para restrições alimentares</span>
-              </li>
-            </ul>
-
-            <div className="mt-auto space-y-4 min-h-[120px]">
-              <div id="wiapy_upsell"></div>
-            </div>
-          </div>
-
-          {/* Guarantee Span */}
-          <div className="md:col-span-12 bg-[#ff0099] brutal-border brutal-shadow p-8 flex flex-col md:flex-row items-center justify-between transform rotate-1 mt-8">
-            <div className="font-space text-3xl sm:text-4xl text-black font-black uppercase max-w-2xl text-center md:text-left mb-6 md:mb-0">
-              GARANTIA DE 7 DIAS. <br/><span className="text-white text-2xl">SE NÃO GOSTAR, DEVOLVEMOS TUDO.</span>
+            <div className="bg-[#ccff00] border-4 border-black p-6 md:p-12 transform -rotate-1 relative overflow-hidden" style={{boxShadow: '8px 8px 0px #0a0a0a'}}>
+              <h1 className="font-space text-black text-5xl sm:text-6xl md:text-7xl font-black leading-[0.9] lowercase mb-6 relative z-10">
+                a gente sabe: às vezes o preço <span className="bg-[#ff0099] text-white px-2">pesa.</span>
+              </h1>
+              <p className="font-dm text-black font-bold text-xl md:text-2xl max-w-2xl relative z-10 mt-8 mb-4 bg-white inline-block p-4 border-2 border-black transform rotate-1">
+                por isso, liberamos uma condição especial para você ter a <span className="bg-[#ccff00] text-black px-2 inline-block -rotate-1 border border-black">nutri da lancheira 24h</span> apenas agora, nesta página.
+              </p>
             </div>
             
-            <div className="bg-black text-white p-6 brutal-white-border brutal-white-shadow transform -rotate-3 text-center">
-              <div className="font-space font-black text-xs opacity-70 mb-1">PAGAMENTO ÚNICO</div>
-              <div className="font-space font-bold text-xl text-[#ccff00]">ACESSO VITALÍCIO.</div>
-              <div className="mt-4 font-dm text-sm underline decoration-wavy decoration-[#ff0099]">Essa condição aparece só aqui e só agora.</div>
+            <div className="bg-[#7000ff] text-white border-4 border-black p-6 md:p-8 mt-12 transform rotate-1 relative brutal-shadow hidden lg:block">
+              <p className="text-xl md:text-2xl font-dm font-bold lowercase">
+                não deixe o preço ficar no caminho do seu tempo livre.
+              </p>
             </div>
           </div>
 
+          {/* Pricing Fold integrated in Hero */}
+          <div className="w-full lg:w-[45%] flex-shrink-0 relative z-20">
+
+            <div className="bg-white text-black border-4 border-black p-8 md:p-10 transform -rotate-1 flex flex-col relative" style={{boxShadow: '8px 8px 0px #ff0099'}}>
+              <div className="absolute -top-5 -right-5 bg-[#ccff00] border-2 border-black text-black font-space font-bold text-xl px-4 py-2 transform rotate-6 z-10 brutal-shadow">
+                ÚLTIMA CHANCE
+              </div>
+              <div className="font-space font-bold text-lg mb-2 uppercase tracking-tight text-[#7000ff]">Nutri — assistente de lanches com IA</div>
+              
+              <div className="flex flex-col mb-8 mt-4">
+                <span className="line-through text-gray-400 font-space text-2xl">de R$ 49,90</span>
+                <div className="font-space font-black text-6xl text-black leading-none mt-1">
+                  <span className="text-3xl relative top-[-1.5rem]">r$</span>17,90
+                </div>
+              </div>
+
+              <ul className="space-y-4 mb-10 font-bold font-dm text-lg">
+                <li className="flex items-start gap-3">
+                  <span className="text-[#ff0099] text-2xl mt-0.5">✓</span>
+                  <span>lanches com o que tem na geladeira</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#ff0099] text-2xl mt-0.5">✓</span>
+                  <span>cardápio semanal sob demanda</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#ff0099] text-2xl mt-0.5">✓</span>
+                  <span>adaptação para restrições alimentares</span>
+                </li>
+              </ul>
+
+              <div className="mt-auto pt-4 border-t-2 border-dashed border-gray-300">
+                <div id="wiapy_upsell"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        {/* Guarantee Span */}
+        <div className="w-full bg-[#ff0099] brutal-border brutal-shadow p-8 flex flex-col lg:flex-row items-center justify-between transform rotate-1 mt-8 mb-20">
+          <div className="font-space text-3xl sm:text-4xl text-black font-black uppercase max-w-2xl text-center lg:text-left mb-6 lg:mb-0">
+            GARANTIA DE 7 DIAS. <br/><span className="text-white text-2xl">SE NÃO GOSTAR, DEVOLVEMOS TUDO.</span>
+          </div>
+          
+          <div className="bg-black text-white p-6 brutal-white-border brutal-white-shadow transform -rotate-3 text-center">
+            <div className="font-space font-black text-xs opacity-70 mb-1">PAGAMENTO ÚNICO</div>
+            <div className="font-space font-bold text-xl text-[#ccff00]">ACESSO VITALÍCIO.</div>
+            <div className="mt-4 font-dm text-sm underline decoration-wavy decoration-[#ff0099]">Essa condição aparece só aqui e só agora.</div>
+          </div>
         </div>
       </main>
 
